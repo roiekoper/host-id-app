@@ -7,10 +7,10 @@ spec:
   template:
     metadata:
       labels:
-        app: iftach
+        app: host-id
     spec:
       containers:
       - name: frontend
-        image: iftachsc/traiana:iftach1
+        image: iftachsc/host-id:1.0
         ports:
         - containerPort: 3000
