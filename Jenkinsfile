@@ -33,8 +33,8 @@ node {
         
         sh "kubectl get deployment host-id -n default || kubectl run host-id --port 3000 --image ${image}:${tag} -n default"
         //expose if not yet exposed
-        sh 'kubectl get svc host-id -n default || kubectl expose deployment/host-id --type LoadBalancer -n default'
+        sh 'kubectl get svc host-id -n default || kubectl expose deployment/host-id --type LoadBalancer -n default --port 80 --target-port 3000'
         
-        sh "kubectl set image deployment/host-id *=${image}:${tag} -n default --port 80 --target-port 3000"
+        sh "kubectl set image deployment/host-id *=${image}:${tag} -n default"
     }
 }
