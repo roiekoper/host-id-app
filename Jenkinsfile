@@ -26,7 +26,7 @@ node {
         }    
     }
     stage('Push Docker image to Azure Container Registry') {
-        docker.withRegistry("https://${acrUrlrepo}", acrCredentialsId) {
+        docker.withRegistry("https://${acrUrl}", acrCredentialsId) {
             built_img.push(tag);
       }
     }
