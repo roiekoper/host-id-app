@@ -1,5 +1,6 @@
-def repo = 'dockerci.azurecr.io'
-def image = "${repo}/host-id"
+def acrUrl = '<acr-name>.azurecr.io'
+def gitHubRepoUrl = '<github-repo-url>'
+def image = "${acrUrl}/host-id"
 def shortCommit = ''
 def tag = ''
 //Update with the credentials id created in Jenkins with the Azure Container Registry user/password 
@@ -9,7 +10,7 @@ node {
     stage('Checkout git repo') {
       sh 'ls /root/.kube'
       sh 'which kubectl'
-      git branch: 'master', url: "https://github.com/iftachsc/host-id-app.git"
+      git branch: 'master', url: gitHubRepoUrl
       gitCommit = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
       shortCommit = gitCommit.take(6)
       tag = "${shortCommit}.${env.BUILD_NUMBER}"
@@ -25,7 +26,7 @@ node {
         }    
     }
     stage('Push Docker image to Azure Container Registry') {
-        docker.withRegistry("https://${repo}", acrCredentialsId) {
+        docker.withRegistry("https://${acrUrlrepo}", acrCredentialsId) {
             built_img.push(tag);
       }
     }
