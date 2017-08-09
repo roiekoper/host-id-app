@@ -3,7 +3,7 @@ def gitHubRepoUrl = '<github-repo-url>'
 def image = "${acrUrl}/host-id"
 def shortCommit = ''
 def tag = ''
-//Update with the credentials id created in Jenkins with the Azure Container Registry user/password 
+
 def acrCredentialsId = 'acr'
 node {
     def built_img = ''
