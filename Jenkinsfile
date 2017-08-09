@@ -1,3 +1,4 @@
+properties([pipelineTriggers([githubPush()])])
 def acrUrl = '<acr-name>.azurecr.io'
 def gitHubRepoUrl = '<github-repo-url>'
 def image = "${acrUrl}/host-id"
